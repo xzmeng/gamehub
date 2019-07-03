@@ -1,0 +1,20 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% from 'back/_formhelpers.html' import render_field %}
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Manage Photos <a href="{{ url_for('back.add_game_image', id=game.id) }}"
+                                                       class="btn btn-primary">Add Game Image</a>
+    </h1>
+    <p class="mb-4">You can manage photos here.</p>
+
+    {% for photo in photos %}
+      <img src="{{ photo.photo_path }}" class="img-thumbnail" alt="Cinque Terre">
+      <a href="{{ url_for('back.remove_game_image', id=game.id) }}" class="btn btn-danger">Remove</a>
+    {% endfor %}
+  </div>
+{% endblock %}

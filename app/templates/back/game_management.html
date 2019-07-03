@@ -1,0 +1,78 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Game Management: {{ game.title }}</h1>
+    <p class="mb-4">You can manage the game here.</p>
+
+    <table class="table table-striped col-4">
+      <tbody>
+      <tr>
+        <th>Game ID</th>
+        <td>{{ game.id }}</td>
+      </tr>
+      <tr>
+        <th>Game Title</th>
+        <td>{{ game.title }}</td>
+      </tr>
+      <tr>
+        <th>Issued Date</th>
+        <td>{{ game.issued_date }}</td>
+      </tr>
+      <tr>
+        <th>Publisher</th>
+        <td>{{ game.publisher }}</td>
+      </tr>
+      <tr>
+        <th>Developer</th>
+        <td>{{ game.developer }}</td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td>{{ game.price }}</td>
+      </tr>
+      <tr>
+        <th>Brief Introduction</th>
+        <td>{{ game.brief_introduction }}</td>
+      </tr>
+      <tr>
+        <th>Rating</th>
+        <td>{{ game.rating }}</td>
+      </tr>
+      <tr>
+        <th>Version</th>
+        <td>{{ game.version }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2>Available Operations:</h2>
+    <a href="{{ url_for('back.edit_game', id=game.id) }}" class="btn btn-primary">Edit</a>
+    {% if not game.enabled %}
+      <a href="{{ url_for('back.enable_game', id=game.id) }}" class="btn btn-primary ">Enable</a>
+    {% else %}
+      <a href="{{ url_for('back.disable_game', id=game.id) }}" class="btn btn-danger ">Disable</a>
+    {% endif %}
+
+    {% if not game.is_recommended %}
+      <a href="{{ url_for('back.recommend_add', id=game.id) }}" class="btn btn-primary">Recommend to the home page</a>
+    {% else %}
+      <a href="{{ url_for('back.recommend_remove', id=game.id) }}" class="btn btn-danger">Remove from the home
+        recommendation</a>
+    {% endif %}
+
+    {% if not game.is_editor_picked %}
+      <a href="{{ url_for('back.editor_pick_add', id=game.id) }}" class="btn btn-primary">Add to "Editor's Pick"</a>
+    {% else %}
+      <a href="{{ url_for('back.editor_pick_remove', id=game.id) }}" class="btn btn-danger">Remove from "Editor's
+        Pick"</a>
+    {% endif %}
+    <br><br>
+    <a href="{{ url_for('back.change_game_cover', id=game.id) }}" class="btn btn-primary">Change Cover</a>
+    <a href="{{ url_for('back.add_game_image', id=game.id) }}" class="btn btn-primary">Add Game Image</a>
+    <a href="{{ url_for('back.manage_photos', id=game.id) }}" class="btn btn-primary">Manage Game Images</a>
+  </div>
+{% endblock %}

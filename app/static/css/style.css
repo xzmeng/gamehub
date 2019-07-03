@@ -1,0 +1,42 @@
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+/* -------------------------------- 
+
+Main Components 
+
+-------------------------------- */
+.cd-accordion-menu {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  font-size: 1.2rem;
+}
+.cd-accordion-menu ul {
+  /* by default hide all sub menus */
+  display: none;
+}
+.cd-accordion-menu li {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.cd-accordion-menu input[type=checkbox] {
+  /* hide native checkbox */
+  position: absolute;
+  opacity: 0;
+}
+.cd-accordion-menu label, .cd-accordion-menu a {
+  position: relative;
+  display: block;
+  padding: 5px 10px 20px 5px;
+  background: #00000000;
+  box-shadow: inset 1px #555960;
+  color: #00000000;
+}
+.no-touch .cd-accordion-menu label:hover, .no-touch .cd-accordion-menu a:hover {
+  background: #ffffff;
+}

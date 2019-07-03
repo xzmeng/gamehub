@@ -1,0 +1,32 @@
+{% extends 'base_main.html' %}
+
+{% block title %}
+  Cart Detail
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/static/cart/myresponsee.css">
+  <link rel="stylesheet" href="/static/cart/style.css">
+  <link href="/static/cart/responsive.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <!-- ##### Game Review Area Start ##### -->
+  <section class="game-review-area section-padding-100">
+    <div class="container">
+      <!-- heading and description -->
+      <div class="line">
+        <div class="fullwidth margin-bottom-20">
+          <h1 class="text-center">HAVE FUN!</h1>
+          <p class="text-center">You've bought the game successfully, please go to
+            <a href="{{ url_for('back.personal_center') }}">personal center</a>
+            and download it!
+          </p>
+          <hr class="break-small break-center">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ##### Game Review Area End ##### -->
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'back/base_back_user.html' %}
+
+{% from 'back/_pagination.html' import pagination_widget %}
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">All Orders</h1>
+    <p class="mb-4">All the order information are shown below.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Record ID</th>
+              <th>User ID</th>
+              <th>Total Cost</th>
+              <th>Bill Address</th>
+              <th>Product Involved</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>RMB {{ order.total_cost }}</td>
+                <td>{{ order.bill_address }}</td>
+                <td>
+                  {% for item in order.order_items %}
+                    {{ item.game.title }}{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                </td>
+                <td>{{ order.date }}</td>
+                <td><a href="{{ url_for('back.refund', id=order.id) }}" class="btn btn-danger">Refund</a></td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}
+

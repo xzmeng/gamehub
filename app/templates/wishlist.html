@@ -1,0 +1,109 @@
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="cart/myresponsee.css">
+  <link rel="stylesheet" href="cart/style.css">
+  <link href="cart/responsive.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Wish List{% endblock %}
+
+{% block content %}
+<!-- ##### Game Review Area Start ##### -->
+<section class="game-review-area section-padding-100">
+  <div class="container">
+    <!-- heading and description -->
+    <div class="line">
+      <div class="fullwidth margin-bottom-20">
+        <h1 class="text-center">My Wish List</h1>
+        <p class="text-center">Lorem ipsum dolor sit amet ipsum dolor sit amet elit ipsum.</p>
+        <hr class="break-small break-center">
+      </div>
+    </div>
+
+    <!-- cart left and right -->
+    <div class="line">
+
+      <!-- cart left -->
+      <div class="s-12 m-12 l-8">
+
+        <!-- item 1 -->
+        <div class="fullwidth cart-item">
+          <div class="s-12 l-4 ">
+            <img src="img/bg-img/8.jpg" height="800" width="400" alt=""/>
+          </div>
+          <div class="s-12 l-8 cart-item-detail">
+            <h4>Destiny 2</h4>
+            <p>
+              Price: <span class="strike">Was $150</span> Now $130<br/>
+              Quanity: 2<br/>
+              Total: <span class="text-primary">$260</span>
+            </p>
+            <p><a href="" class="remove-item">Remove</a></p>
+          </div>
+        </div>
+        <br/><br/><br/>
+        <br/><br/><br/>
+
+        <!-- item 2 -->
+        <div class="fullwidth cart-item">
+          <div class="s-12  l-4 ">
+            <img src="img/bg-img/7.jpg" alt="">
+          </div>
+          <div class="s-12 l-8 cart-item-detail">
+            <h4>Bloodborne</h4>
+            <p>
+              Price: <span class="strike">Was $150</span> Now $130<br/>
+              Quanity: 2<br/>
+              Total: <span class="text-primary">$260</span>
+            </p>
+            <p><a href="" class="remove-item">Remove</a></p>
+          </div>
+        </div>
+
+        <!-- item 3 -->
+        <div class="fullwidth cart-item">
+          <div class="s-12 l-4 ">
+            <img src="img/bg-img/6.jpg" alt="">
+          </div>
+          <div class="s-12 m-8 cart-item-detail">
+            <h4>NFS 2018</h4>
+            <p>
+              Price: <span class="strike">Was $150</span> Now $130<br/>
+              Quanity: 2<br/>
+              Total: <span class="text-primary">$260</span>
+            </p>
+            <p><a href="" class="remove-item">Remove</a></p>
+          </div>
+        </div>
+
+        <!-- item 4 -->
+        <div class="fullwidth cart-item">
+          <div class="s-12 l-4">
+            <img src="img/bg-img/10.jpg" alt="">
+          </div>
+          <div class="s-12 m-8  cart-item-detail">
+            <h4>Sekiro</h4>
+            <p>
+              Price: <span class="strike">Was $150</span> Now $130<br/>
+              Quanity: 2<br/>
+              Total: <span class="text-primary">$260</span>
+            </p>
+            <p><a href="" class="remove-item">Remove</a></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- cart right -->
+      <div class="s-12 m-12 l-4 margin-m-top-60 padding border-1">
+        <p class="margin-bottom text-size-16">Merchandise: <span class="right">4</span></p>
+        <p class="margin-bottom text-size-16">Order Total: <span class="right">$260.00</span></p>
+        <a href="cart.html" class="button fullwidth">Add them into cart</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ##### Game Review Area End ##### -->
+
+{% endblock %}

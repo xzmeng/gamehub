@@ -1,0 +1,52 @@
+{% extends 'back/base_back_user.html' %}
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Refund</h1>
+    <p class="mb-4">You can refund here.</p>
+
+    <table class="table table-striped col-4">
+      <tbody>
+      <tr>
+        <th>Order ID</th>
+        <td>{{ order.id }}</td>
+      </tr>
+      <tr>
+        <th>Total Cost</th>
+        <td>{{ order.total_cost }}</td>
+      </tr>
+      <tr>
+        <th>Bill Address</th>
+        <td>{{ order.bill_address }}</td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td>{{ order.date }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2>Refund Items:</h2>
+    <form action="" method="post">
+      {% for item in order.order_items %}
+        {% if item.status == 'available' %}
+          <div class="form-check">
+            <label class="form-check-label" for="{{ item.id }}">
+              <input type="checkbox" class="form-check-input" id="{{ item.id }}" name="refund_items"
+                     value="{{ item.id }}">
+              {{ item.game.title }}
+            </label>
+          </div>
+        {% elif item.status == 'refunding' %}
+          <p>{{ item.game.title }} is refunding.</p>
+        {% elif item.status == 'refunded' %}
+          <p>{{ item.game.title }} is refunded</p>
+        {% endif %}
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Refund</button>
+    </form>
+  </div>
+{% endblock %}

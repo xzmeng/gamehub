@@ -1,0 +1,67 @@
+﻿{% extends 'base_main.html' %}
+
+{% block title %}
+  Cart Detail
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/static/cart/myresponsee.css">
+  <link rel="stylesheet" href="/static/cart/style.css">
+  <link href="/static/cart/responsive.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <!-- ##### Game Review Area Start ##### -->
+  <section class="game-review-area section-padding-100">
+    <div class="container">
+      <!-- heading and description -->
+      <div class="line">
+        <div class="fullwidth margin-bottom-20">
+          <h1 class="text-center">My Cart</h1>
+          <p class="text-center">Lorem ipsum dolor sit amet ipsum dolor sit amet elit ipsum.</p>
+          <hr class="break-small break-center">
+        </div>
+      </div>
+
+      {% if games.count() %}
+      <!-- cart left and right -->
+      <div class="line">
+
+        <!-- cart left -->
+        <div class="s-12 m-12 l-8">
+
+          {% for game in games %}
+            <div class="fullwidth cart-item">
+              <div class="s-12 l-4">
+                <img src="{{ game.cover_path }}" alt="">
+              </div>
+              <div class="s-12 m-8  cart-item-detail">
+                <h4>{{ game.title }}</h4>
+                <p>
+                  Price: RMB{{ game.price }}<br/>
+                </p>
+                <p><a href="{{ url_for('main.cart_remove', id=game.id) }}" class="remove-item">Remove</a></p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- cart right -->
+        <div class="s-12 m-12 l-4 margin-m-top-60 padding border-1">
+          <p class="margin-bottom text-size-16">Merchandise: <span class="right">{{ total_num }}</span></p>
+          <p class="margin-bottom text-size-16">Estimated Shipping: <span class="right">Free</span></p>
+          <p class="margin-bottom text-size-16">Order Total: <span class="right">RMB {{ total_price }}</span></p>
+          <a href="{{ url_for('main.cart_checkout') }}" class="button fullwidth">Proceed to cheque out</a>
+        </div>
+
+      </div>
+      {% else %}
+        <p class="text-center">Your cart is empty, would you like to
+          <a href="{{ url_for('main.game_list') }}">buy some games?</a></p>
+      {% endif %}
+    </div>
+  </section>
+  <!-- ##### Game Review Area End ##### -->
+{% endblock %}
+

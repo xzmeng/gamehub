@@ -1,0 +1,99 @@
+{% extends 'base_main.html' %}
+{% import '_macros.html' as macros %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+  <!-- ##### Breadcrumb Area Start ##### -->
+  <div class="breadcrumb-area bg-img bg-overlay" style="background-image: url(/static/img/bg-img/36.jpg);">
+    <div class="container h-100">
+      <div class="text-justify">
+        <h1>hello</h1>
+      </div>
+    </div>
+  </div>
+  <!-- ##### Breadcrumb Area End ##### -->
+
+  <!-- ##### Game Review Area Start ##### -->
+  <section class="game-review-area section-padding-100">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Sidebar Widget -->
+        <div class="col-12 col-sm-9 col-md-6 col-lg-2">
+          <ul class="nav flex-column">
+            {% for genre in genres %}
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ url_for('main.game_list', genre_name=genre.name) }}"
+                   style="font-size: 28px;
+                       {% if genre.name == genre_name %}background-color: #6b6d7d;{% endif %}">{{ genre.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- ##### Game Review Area ##### -->
+        <div class="col-12 col-lg-10">
+
+          <!-- *** Single Review Area *** -->
+          {% for game in games %}
+            <div class="single-game-review-area d-flex flex-wrap mb-30">
+              <div class="game-thumbnail">
+                <img src="{{ game.cover_path }}" alt="">
+              </div>
+              <div class="game-content">
+                {% for genre in game.genres %}
+                  <span class="game-tag">{{ genre.name }}</span>
+                  {%- if not loop.last -%}
+                    <span class="game-tag"> / </span>
+                  {% endif %}
+                {% endfor %}
+
+                <a href="{{ url_for('main.game_detail', id=game.id) }}" class="game-title">{{ game.title }}</a>
+                <div class="game-meta">
+                  <a href="#" class="game-date">{{ game.issued_date }}</a>
+                  {{ macros.rating_star(game) }}
+                </div>
+                <p>This is a very awesome game. This is a very awesome game. This is a very awesome game. This is a very
+                  awesome game. This is a very awesome game. This is a very awesome game. This is a very awesome
+                  game. </p>
+                <!-- Download & Rating Area -->
+                <div class="download-rating-area d-flex align-items-center justify-content-between">
+                  <div class="download-area">
+                    <a href="#"><h3 style="color:red">RMB {{ game.price }}</h3></a>
+                  </div>
+                  <div class="download-area">
+                    <a href="{{ url_for('main.cart_add', id=game.id) }}"><img src="/static/img/icon/购物车2.png" style="height:30px" alt=""></a>
+                    <a href="{{ url_for('main.wishlist_add', id=game.id) }}"><img src="/static/img/icon/爱心2.png" style="height:30px" alt=""></a>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <hr>
+            </div>
+          {% else %}
+            <h2>No Available game of {{ genre.name }}</h2>
+          {% endfor %}
+          <!-- ### Pagination Area ### -->
+          <nav aria-label="Page navigation example">
+            {{ macros.pagination_widget(pagination, 'main.game_list', fragment='') }}
+          </nav>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+  <!-- ##### Game Review Area End ##### -->
+{% endblock %}
+
+
+<!-- ##### All Javascript Script ##### -->
+{% block js %}
+  {{ super() }}
+  <script src="/static/js/main.js"></script>
+{% endblock %}

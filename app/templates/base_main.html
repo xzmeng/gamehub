@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Rating Star -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      .checked {
+        color: orange;
+      }
+    </style>
+  {% endblock %}
+</head>
+
+<body>
+
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+
+
+<!-- ##### Header Area Start ##### -->
+<header class="header-area wow fadeInDown" data-wow-delay="500ms">
+  <!-- Top Header Area -->
+  <div class="top-header-area" style="background-color: rgba(0, 0, 0)">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 d-flex align-items-center justify-content-between">
+          <!-- Logo Area -->
+          <div class="logo">
+            <a href="{{ url_for('main.index') }}"><img src="/static/img/core-img/logo-color.png"
+                                                       style="height:40px; width:100px" alt=""></a>
+          </div>
+
+          <!-- Search & Login Area -->
+          <div class="search-login-area d-flex align-items-center">
+            <!-- Top Search Area -->
+            <div class="top-search-area">
+              <form action="{{ url_for('main.search') }}" method="get">
+                <input type="search" name="keyword" id="topSearch" placeholder="Search">
+                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <!-- Login Area -->
+            <div class="top-icon-area">
+              <form>
+                <button type="button" class="btn"
+                        style="margin-left: 15px; background-color: rgba(0, 0, 0); height:40px; width:70px">
+                  <a href="{{ url_for('back.personal_center') }}"><img src="/static/img/icon/用户.png"
+                                                                       style="height:20px; width:20px"></a>
+                </button>
+                <button type="button" class="btn btn-default navbar-btn"
+                        style="background-color: rgba(0, 0, 0); height:40px; width:70px">
+                  <a href="{{ url_for('main.wishlist_detail') }}"><img src="/static/img/icon/爱心.png"
+                                                                       style="height:20px; width:20px"></button>
+                </a>
+                <button type="button" class="btn btn-default navbar-btn"
+                        style="background-color: rgba(0, 0, 0); height:40px; width:70px">
+                  <a href="{{ url_for('main.cart_detail') }}"><img src="/static/img/icon/购物车.png"
+                                                                   style="height:20px; width:20px"></button>
+                </a>
+                {#                <button type="button" class="btn btn-default navbar-btn"#}
+                {#                        style="background-color: rgba(0, 0, 0); height:40px; width:70px">#}
+                {#                  <a href="contact.html"><img src="/static/img/icon/齿轮.png" style="height:20px; width:38px"></button>#}
+                {#                </a>#}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container col-8">
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  <!-- Navbar Area -->
+  <div class="egames-main-menu" id="sticker">
+    <div class="classy-nav-container breakpoint-off">
+      <div class="container">
+        <!-- Menu -->
+        <nav class="classy-navbar justify-content-between" id="egamesNav">
+
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+
+            <!-- Close Button -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            <div class="classynav">
+
+              <ul>
+                <li><a href="{{ url_for('main.index') }}">HOME</a></li>
+                <li><a href="{{ url_for('main.game_list') }}">SHOP</a></li>
+              </ul>
+            </div>
+            <!-- Nav End -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ##### Header Area End ##### -->
+
+{% block content %}
+{% endblock %}
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+  <!-- Main Footer Area -->
+  <div class="main-footer-area section-padding-100-0">
+    <div class="container">
+      <div class="row">
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="100ms">
+            <div class="widget-title">
+              <a href="{{ url_for('main.index') }}"><img src="/static/img/core-img/logo-white.png" style="height:250px"
+                                                         alt=""></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-lg-3">
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="single-footer-widget mb-70 wow fadeInUp" data-wow-delay="700ms">
+            <div class="widget-content">
+              <nav>
+                <ul>
+                  <li><a href="{{ url_for('auth.login') }}">Sign in</a></li>
+                  <li><a href="{{ url_for('main.cart_detail') }}">View Cart</a></li>
+                  <li><a href="{{ url_for('main.wishlist_detail') }}">My Wishlist</a></li>
+                  <li><a href="{{ url_for('back.all_orders_user') }}">Track My Order</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="single-footer-widget mb-70">
+            <div class="widget-title">
+              <h4>Search the Game</h4>
+            </div>
+            <div class="widget-content">
+              <nav>
+                <ul style="width: 400px">
+                  <li><p>Search anything you want here!</p></li>
+                  <li>
+                    <hr>
+
+                    <form class="input-group" action="{{ url_for('main.search') }}" method="get">
+                      <input type="text" class="form-control" style="border-radius: 0px; height:50px; width: 200px"
+                             placeholder="Game Name" name="keyword">
+                      <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"
+                                                            style="border-radius: 0px; background-color: #20d8da; height:50px; width: 100px">Search</button>
+                                                </span>
+                    </form><!-- /input-group -->
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copywrite Area -->
+  <div class="copywrite-content">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 col-sm-5">
+          <!-- Copywrite Text -->
+          <p class="copywrite-text"><a href="#">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            UIC all rights reserved</a>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ##### Footer Area End ##### -->
+
+{% block js %}
+  <!-- ##### All Javascript Script ##### -->
+  <!-- jQuery-2.2.4 js -->
+  <script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+  <!-- Popper js -->
+  <script src="/static/js/bootstrap/popper.min.js"></script>
+  <!-- Bootstrap js -->
+  <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+  <!-- All Plugins js -->
+  <script src="/static/js/plugins/plugins.js"></script>
+  <!-- Active js -->
+  <script src="/static/js/active.js"></script>
+{% endblock %}
+
+</body>
+</html>

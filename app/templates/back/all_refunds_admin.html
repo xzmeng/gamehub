@@ -1,0 +1,68 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% from 'back/_pagination.html' import pagination_widget %}
+
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">All Refunds</h1>
+    <p class="mb-4">All the refund information are shown below.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Refund ID</th>
+              <th>User ID</th>
+              <th>Order ID</th>
+              <th>Status</th>
+              <th>Admin Message</th>
+              <th>Product Involved</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for refund in refunds %}
+              <tr>
+                <th>{{ refund.id }}</th>
+                <th>{{ refund.user_id }}</th>
+                <th>{{ refund.order_id }}</th>
+                <th>{{ refund.status }}</th>
+                <th>{{ refund.msg }}</th>
+                <td>
+                  {% for refund_item in refund.refund_items %}
+                    {{ refund_item.order_item.game.title }}{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                </td>
+                <td>{{ refund.date }}</td>
+                <td>
+                  {% if refund.status == 'pending' %}
+                    <a href="{{ url_for('back.refund_process', id=refund.id) }}" class="btn btn-primary">Process</a>
+                  {% else %}
+                    <a href="{{ url_for('back.refund_process', id=refund.id) }}" class="btn btn-primary disabled">Processed</a>
+                  {% endif %}
+
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          {{ pagination_widget(pagination, 'back.all_refunds_admin') }}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}

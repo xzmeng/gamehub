@@ -1,0 +1,129 @@
+{% extends 'base_main.html' %}
+
+{% import '_macros.html' as macros %}
+
+{% block title %}Game Detail{% endblock %}
+
+{% block content %}
+  <!-- ##### Single Game Review Area Start ##### -->
+  <section class="single-game-review-area section-padding-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="single-game-img-slides">
+            <div id="gameSlides" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner" style="height:500px;">
+                {% for photo in photos %}
+                  <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img class="d-block w-100" src="{{ photo.photo_path }}" alt="">
+                  </div>
+                {% endfor %}
+              </div>
+              <ol class="carousel-indicators">
+                {% for photo in photos %}
+                  <li data-target="#gameSlides" data-slide-to="{{ loop.index0 }}"
+                      {% if loop.first %}class="active"{% endif %}
+                      style="background-image: url({{ photo.photo_path }});"></li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <!-- *** Review Area *** -->
+        <div class="col-12 col-md-6">
+          <div class="single-game-review-area style-2 mt-70">
+            <div class="game-content">
+              {% for genre in game.genres %}
+                <span class="game-tag">{{ genre.name }}</span>
+                {%- if not loop.last -%}
+                  <span class="game-tag"> / </span>
+                {% endif %}
+              {% endfor %}
+              <h2>{{ game.title }}</h2>
+              {{ macros.rating_star(game, detail=True) }}
+
+              <div class="game-meta">
+                <a href="#" class="game-date">{{ game.issued_date }}</a>
+              </div>
+              <p>{{ game.brief_introduction }}</p>
+              <!-- Download & Rating Area -->
+              <div class="download-rating-area d-flex align-items-center justify-content-between">
+                <div class="download-area">
+                  <a href="#"><h3 style="color:red">RMB {{ game.price }}</h3></a>
+                </div>
+                <div class="download-area">
+                  <a href="{{ url_for('main.cart_add', id=game.id) }}"><img src="/static/img/icon/购物车2.png"
+                                                                            style="height:30px" alt=""></a>
+                  <a href="{{ url_for('main.wishlist_add', id=game.id) }}"><img src="/static/img/icon/爱心2.png"
+                                                                                style="height:30px" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- *** Barfiller Area *** -->
+        <div class="col-12 col-md-6">
+          <a href="{{ url_for('main.cart_add', id=game.id) }}">
+            <button class="btn egames-btn w-100" type="button"><b>BUY IT NOW!</b></button>
+          </a>
+        </div>
+      </div>
+
+      <br><br><br><br>
+
+      <!-- Comment Area Start -->
+      <div class="comment_area clearfix mb-70">
+        <h4 class="mb-50">Comments</h4>
+
+        <ol>
+          {% for comment in comments %}
+            <!-- Single Comment Area -->
+            <li class="single_comment_area">
+              <!-- Comment Content -->
+              <div class="comment-content d-flex">
+                <!-- Comment Author -->
+                <div class="comment-author">
+                  <img src="{{ comment.user.photo_path }}" alt="author">
+                </div>
+                <!-- Comment Meta -->
+                <div class="comment-meta">
+                  <a href="#" class="post-author">{{ comment.user.name }}</a>
+                  <a href="#" class="post-date">{{ comment.timestamp }}</a>
+                  <p>{{ comment.body }}</p>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <nav aria-label="Page navigation example">
+        {{ macros.pagination_widget(pagination, 'main.game_detail', id=game.id, fragment='') }}
+      </nav>
+
+
+      <div class="post-a-comment-area mb-30 clearfix" id="reply">
+        <h4 class="mb-50">Leave a reply</h4>
+
+        <!-- Reply Form -->
+        <div class="contact-form-area">
+          <form action="#" method="post">
+            <div class="row">
+              <div class="col-12">
+                {{ form.body(class='form-control', cols='30', rows='10', placeholder='Message*') }}
+              </div>
+              <div class="col-12">
+                <input class="btn egames-btn w-100" type="submit" value="Submit Comment">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ##### Single Game Review Area End ##### -->
+{% endblock %}

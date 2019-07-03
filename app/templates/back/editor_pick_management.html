@@ -1,0 +1,59 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% from 'back/_pagination.html' import pagination_widget %}
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Editor's Pick Management</h1>
+    <p class="mb-4">You can view or remove game from the Editor's Pick carousel in the home page here.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Game ID</th>
+              <th>Game Title</th>
+              <th>Issued Date</th>
+              <th>Publisher</th>
+              <th>Developer</th>
+              <th>Price</th>
+              <th>Brief Introduction</th>
+              <th>Rating</th>
+              <th>Latest Version</th>
+              <th>Enabled</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for game in games %}
+              <tr>
+                <td>{{ game.id }}</td>
+                <td>{{ game.title }}</td>
+                <td>{{ game.issued_date }}</td>
+                <td>{{ game.publisher }}</td>
+                <td>{{ game.developer }}</td>
+                <td>{{ game.price }}</td>
+                <td>{{ game.brief_introduction }}</td>
+                <td>{{ game.rating }}</td>
+                <td>{{ game.version }}</td>
+                <td>{{ game.enabled }}</td>
+                <td><a href="{{ url_for('back.editor_pick_remove', id=game.id, from_list=True) }}" class="btn btn-danger">Remove</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}

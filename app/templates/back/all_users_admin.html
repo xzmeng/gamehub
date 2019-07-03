@@ -1,0 +1,71 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% from 'back/_pagination.html' import pagination_widget %}
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">All Users</h1>
+    <p class="mb-4">All the user information are shown below.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Bill Address</th>
+              <th>Personal Introduction</th>
+              <th>Phone Number</th>
+              <th>Confirmed</th>
+              <th>Active</th>
+
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Bill Address</th>
+              <th>Personal Introduction</th>
+              <th>Phone Number</th>
+              <th>Confirmed</th>
+              <th>Active</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.bill_address }}</td>
+                <td>{{ user.personal_introduction }}</td>
+                <td>{{ user.phone_no }}</td>
+                <td>{{ user.confirmed }}</td>
+                <td>{{ user.is_active }}</td>
+                <td><a href="{{ url_for('back.user_management', id=user.id) }}" class="btn btn-primary">Manage</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          {{ pagination_widget(pagination, 'back.all_users_admin') }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}

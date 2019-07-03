@@ -1,0 +1,57 @@
+{% extends 'back/base_back_admin.html' %}
+
+{% block content %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">User Management: {{ user.name }}</h1>
+    <p class="mb-4">You can manage the user account here.</p>
+
+    <table class="table table-striped col-4">
+      <tbody>
+      <tr>
+        <th>User ID</th>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>{{ user.name }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>{{ user.gender }}</td>
+      </tr>
+      <tr>
+        <th>Bill Address</th>
+        <td>{{ user.bill_address }}</td>
+      </tr>
+      <tr>
+        <th>Personal Introduction</th>
+        <td>{{ user.personal_introduction }}</td>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <td>{{ user.phone_no }}</td>
+      </tr>
+      <tr>
+        <th>Confirmed</th>
+        <td>{{ user.confirmed }}</td>
+      </tr>
+      <tr>
+        <th>Active</th>
+        <td>{{ user.is_active }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2>Available Operations:</h2>
+    <a href="{{ url_for('back.edit_user', id=user.id) }}" class="btn btn-primary">Edit</a>
+
+
+  </div>
+{% endblock %}
