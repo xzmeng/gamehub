@@ -24,7 +24,7 @@ you can save the above environment variables to a .env file in the project root.
 
 Caution: In no circumstances should you push the .env file to a public environment !
     
-Make sure you the database "gamehub" exists, or execute the following command in
+Make sure the database "gamehub" exists, or execute the following command in
 mysql shell:
     
     mysql> create database gamehub;
@@ -37,3 +37,8 @@ mysql shell:
 -----------------
     flask run
     
+![screenshot1](https://github.com/xzmeng/gamehub/blob/master/screenshot/screenshot1.png)
+![screenshot2](https://github.com/xzmeng/gamehub/blob/master/screenshot/screenshot2.png)
+![screenshot3](https://github.com/xzmeng/gamehub/blob/master/screenshot/screenshot3.png)
+![screenshot4](https://github.com/xzmeng/gamehub/blob/master/screenshot/screenshot4.png)
+
