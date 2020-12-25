@@ -41,7 +41,7 @@ def insert_100_games():
 
     from docx import Document
 
-    word_doc = Document('gamesssss.docx')
+    word_doc = Document('game_list.docx')
 
     table = word_doc.tables[0]
 

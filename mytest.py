@@ -6,7 +6,7 @@ from app.models import Game, Genre
 def func1():
     from docx import Document
 
-    word_doc = Document('gamesssss.docx')
+    word_doc = Document('game_list.docx')
 
     table = word_doc.tables[0]
 

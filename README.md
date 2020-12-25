@@ -3,6 +3,8 @@ Gamehub
 
 Gamehub is an online game shop written in python with flask framework.
 
+    The frontend template is from the internet.
+
 1.Install dependencies
 ----------------------
     pip install -r requirements.txt
